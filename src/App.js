@@ -1,25 +1,31 @@
 import React, { useState } from "react";
-import './App.css';
+import "./App.css";
 
 function Todo({ todo, index }) {
   return <div className="todo">{todo.text}</div>;
 }
 
-function TodoForm({addTodo}) {
-  const [value, setValue] = useState('');
+function TodoForm({ addTodo }) {
+  const [value, setValue] = useState("");
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    if(!value) return;
+    if (!value) return;
     addTodo(value);
-    setValue('');
-  }
+    setValue("");
+  };
 
   return (
     <form onSubmit={handleSubmit}>
-      <input type="text" className="input" value={value} onChange={e => setValue(e.target.value)} />
+      <input
+        type="text"
+        className="input"
+        value={value}
+        placeholder="Add ToDo..."
+        onChange={(e) => setValue(e.target.value)}
+      />
     </form>
-  )
+  );
 }
 
 function App() {
@@ -38,10 +44,10 @@ function App() {
     },
   ]);
 
-  const addTodo = text => {
-    const newTodos = [...todos, {text}];
+  const addTodo = (text) => {
+    const newTodos = [...todos, { text }];
     setTodos(newTodos);
-  }
+  };
 
   return (
     <div className="app">
